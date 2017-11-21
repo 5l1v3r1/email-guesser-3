@@ -1,0 +1,12 @@
+default: &default
+  host: localhost
+  adapter: postgresql
+  encoding: utf-8
+
+development:
+  <<: *default
+  database: email_guesser_dev
+
+test:
+  <<: *default
+  database: email_guesser_test
