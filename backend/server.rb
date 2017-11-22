@@ -1,15 +1,17 @@
-require "sinatra"
-require "sinatra/activerecord"
-require "json"
-require "pry"
+require "bundler"
+Bundler.require
+
+require "./models/company"
+require "./models/employee"
 
 class Server < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   set :database_file, "config/database.yml"
 
-  get "/" do
-    content_type :json
+  get "/email_address" do
+    full_name      = params[:full_name]
+    company_domain = params[:company_domain]
 
-    { "foo" => "bar" }.to_json
+    "#{full_name}@#{company_domain}"
   end
 end
