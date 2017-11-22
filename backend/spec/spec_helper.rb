@@ -1,6 +1,3 @@
-require "rack/test"
-require "rspec"
-
 require File.expand_path("../../server.rb", __FILE__)
 
 module Mixin
@@ -10,7 +7,20 @@ module Mixin
   end
 end
 
-RSpec.configure { |c| c.include Mixin }
+RSpec.configure do |c| 
+  c.include Mixin
+
+  c.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  c.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+end
 
 Shoulda::Matchers.configure do |c|
   c.integrate do |w|
