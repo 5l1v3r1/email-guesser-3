@@ -3,7 +3,7 @@ require File.expand_path("../../server.rb", __FILE__)
 module Mixin
   include Rack::Test::Methods
   def app() 
-    Sinatra::Application 
+    Server
   end
 end
 

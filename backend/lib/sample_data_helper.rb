@@ -1,4 +1,6 @@
 class SampleDataHelper
+  class MalformedDataError < StandardError; end
+
   def initialize(json)
     @json = json
   end
@@ -15,6 +17,8 @@ class SampleDataHelper
         last_name: names.last
       )
     end
+  rescue NoMethodError, JSON::ParserError
+    raise MalformedDataError, "The data submitted is not in the correct format."
   end
 
   private

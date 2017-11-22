@@ -10,7 +10,7 @@ describe SampleDataHelper do
 
   subject { SampleDataHelper.new(json) }
 
-  describe "store!" do
+  describe "store_data!" do
     let(:companies) { Company.all }
     let(:employees) { Employee.all }
 
@@ -21,6 +21,26 @@ describe SampleDataHelper do
       expect(employees.map(&:first_name)).to eq(["Margaret", "Franz"])
       expect(employees.map(&:last_name)).to eq(["Atwood", "Kafka"])
       expect(employees.map(&:email_name)).to eq(["matwood", "franzkafka"])
+    end
+
+    context "the JSON is malformed" do
+      before { allow(subject).to receive(:sample_data).and_raise(JSON::ParserError) }
+
+      it "raises a custom error" do
+        expect { subject.store_data! }.to raise_error(
+          SampleDataHelper::MalformedDataError, "The data submitted is not in the correct format."
+        )
+      end
+    end
+
+    context "the keys are not formed correctly" do
+      before { allow(subject).to receive(:sample_data).and_raise(NoMethodError) }
+
+      it "raises a custom error" do
+        expect { subject.store_data! }.to raise_error(
+          SampleDataHelper::MalformedDataError, "The data submitted is not in the correct format."
+        )
+      end
     end
   end
 end
