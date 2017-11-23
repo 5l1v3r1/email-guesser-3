@@ -39,4 +39,9 @@ Manually test the email address finder
 
 ## Frontend
 
-I've set up the basics of an SPA using React.js. I would love to complete the challenge, but 2 days was just not enough for me to do so thouroughly.
+I've set up the basics of an SPA using React.js.
+```bash
+npm start
+```
+
+I would love to complete the challenge, but 2 days was just not enough for me to do so thouroughly.
