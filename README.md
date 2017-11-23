@@ -47,4 +47,4 @@ npm install
 npm start
 ```
 
-I would love to complete the challenge, but 2 days was just not enough for me to do so thouroughly.
+I would love to complete the challenge if given more time, but 2 days was just not enough for me to do so thouroughly for the frontend portion.
