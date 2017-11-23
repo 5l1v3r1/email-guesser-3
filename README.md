@@ -12,6 +12,7 @@ cd email-guesser
 ### Setup
 Bundle packages
 ```bash
+cd backend
 bundle install
 ```
 
@@ -39,8 +40,10 @@ Manually test the email address finder
 
 ## Frontend
 
-I've set up the basics of an SPA using React.js.
+I've set up the basics of an SPA using React.js. It's not fully functioning... yet.
 ```bash
+cd frontend
+npm install
 npm start
 ```
 
